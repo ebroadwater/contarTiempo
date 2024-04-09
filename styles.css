@@ -1,0 +1,64 @@
+body{
+    margin: 0;
+}
+.countTimeContainer {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 50px;
+}
+  
+.countTimeContainer button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5%; /* Para darle forma de círculo */
+    margin: 10px; /* Espacio entre círculos */
+    color: white;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+  }
+
+  h3{
+    text-shadow: 2px 2px 4px #34495ead;
+    color:#34495e;
+  }
+  .countTimeContainer .boton-start button {
+    background-color: #4CAF50; 
+    margin-bottom: 20px;
+    width: 10vw; /* Ancho relativo al 10% del ancho de la ventana */
+    height: 10vw; /* Alto relativo al 10% del ancho de la ventana */
+    max-width: 100px; /* Ancho máximo de 100px */
+    max-height: 100px; /* Alto máximo de 100px */
+    border-radius: 50%; /* Para darle forma de círculo */
+  }
+  
+  .countTimeContainer .boton-stop button {
+    background-color: #f44336; /* Rojo */
+    margin-top: 20px;
+    width: 10vw; /* Ancho relativo al 10% del ancho de la ventana */
+    height: 10vw; /* Alto relativo al 10% del ancho de la ventana */
+    max-width: 100px; /* Ancho máximo de 100px */
+    max-height: 100px; /* Alto máximo de 100px */
+    border-radius: 50%; /* Para darle forma de círculo */
+  }
+  
+  .countTimeContainer .boton-reunion-interna button {
+    background-color: #008CBA; /* Azul */
+  }
+  
+  .countTimeContainer .boton-no-trabajando button {
+    background-color: #ff9800; /* Naranja */
+  }
+  
+  .countTimeContainer .boton-reunion-cliente button {
+    background-color: #9b59b6; /* Morado */
+  }
+  
+  .countTimeContainer .boton-codigo button {
+    background-color: #34495e; /* Azul oscuro */
+  }
