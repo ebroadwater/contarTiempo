@@ -1,83 +1,106 @@
+// Esperar a que la ventana se cargue completamente
 window.addEventListener("load", function() {
-    let startTime = {}; // Objeto para almacenar la hora de inicio de cada actividad
+  // Objeto para almacenar la hora de inicio de cada actividad
+  let startTimes = {};
+
+  // Variable para almacenar el tiempo total de todas las actividades
+  let totalTimeAllActivities = 0;
+
+  // Función para registrar la hora de inicio de una actividad
+  function recordTime(activity) {
+      let currentTime = new Date();
+      startTimes[activity] = currentTime.getTime();
+      console.log(`Tiempo de inicio de ${activity}: ${currentTime.toLocaleTimeString()}`);
+  }
+
+  // Función para calcular el tiempo transcurrido en segundos entre dos actividades
+  function calculateElapsedTime(previousActivity, currentActivity) {
+  let startTime = startTimes[previousActivity];
+  let endTime = startTimes[currentActivity] || new Date().getTime();
   
-    // Función para almacenar la hora actual en la memoria local
-    function recordTime(activity) {
-      let currentTime = new Date().getTime();
-      localStorage.setItem(activity, currentTime);
-      console.log(`Tiempo de ${activity}: ${new Date(currentTime).toLocaleTimeString()}`);
-    }
-  
-    // Función para calcular el tiempo transcurrido en segundos para una actividad
-    function calculateElapsedTime(activity) {
-      let startTime = localStorage.getItem(activity);
-      if (!startTime) return 0; // Si no se ha registrado ninguna hora de inicio, el tiempo es cero
-      let currentTime = new Date().getTime();
-      return Math.floor((currentTime - startTime) / 1000); // Convertir milisegundos a segundos
-    }
-  
-    // Función para mostrar el tiempo transcurrido en formato de horas, minutos y segundos
-    function formatTime(seconds) {
+  // Si no hay actividad siguiente, se calcula con la hora de parada
+  if (!startTimes[currentActivity] && currentActivity !== "stop") {
+      endTime = new Date().getTime();
+  }
+
+  return Math.max(Math.floor((endTime - startTime) / 1000), 0); // Devolver el tiempo máximo de 0 segundos si es negativo
+}
+
+
+  // Función para dar formato al tiempo en horas, minutos y segundos
+  function formatTime(seconds) {
       let hours = Math.floor(seconds / 3600);
       let minutes = Math.floor((seconds % 3600) / 60);
       let remainingSeconds = seconds % 60;
       return `${hours} horas ${minutes} minutos ${remainingSeconds} segundos`;
-    }
-  
-    // Event listeners para los botones
-    document.getElementById("startButton").addEventListener("click", function() {
-      for (let activity in localStorage) {
-        if (localStorage.hasOwnProperty(activity)) {
-          localStorage.removeItem(activity); // Limpiar la memoria local de todas las actividades
-        }
-      }
+  }
+
+  // Event listener para el botón de inicio
+  document.getElementById("startButton").addEventListener("click", function() {
+      // Limpiar el registro de tiempos
+      startTimes = {};
+      // Registrar la hora de inicio de la actividad "start"
       recordTime("start");
-    });
-  
-    document.getElementById("reunionInternaButton").addEventListener("click", function() {
-      recordTime("reunionInterna");
-    });
-  
-    document.getElementById("noTrabajandoButton").addEventListener("click", function() {
-      recordTime("noTrabajando");
-    });
-  
-    document.getElementById("reunionClienteButton").addEventListener("click", function() {
-      recordTime("reunionCliente");
-    });
-  
-    document.getElementById("codigoButton").addEventListener("click", function() {
-      recordTime("codigo");
-    });
-  
-    document.getElementById("stopButton").addEventListener("click", function() {
-      let totalSeconds = 0;
-      let activities = ["reunionInterna", "noTrabajando", "reunionCliente", "codigo"];
-      for (let activity of activities) {
-        let seconds = calculateElapsedTime(activity);
-        let element = document.getElementById(`${activity}Time`);
-        if (element) { // Verificar si el elemento existe antes de establecer su texto interno
-          element.innerText = `Tiempo de ${activity}: ${formatTime(seconds)}`;
-          console.log(`Tiempo de ${activity}: ${formatTime(seconds)}`);
-        }
-        totalSeconds += seconds;
+  });
+
+  let reunionInternaTotal = 0;
+  let reunionClienteTotal= 0;
+  let codigoTotal=0;
+  let noTrabajandoTotal=0;
+
+  // Función para registrar la hora de inicio de una actividad y calcular el tiempo total de la actividad anterior
+  function recordAndCalculateTime(activity) {
+      // Encontrar la actividad anterior
+      let previousActivity = Object.keys(startTimes).reverse().find(activity => activity !== "start");
+      // Si hay una actividad anterior, calcular y mostrar el tiempo total de esa actividad
+      if (previousActivity) {
+          let elapsedTime = calculateElapsedTime(previousActivity, "stop");
+          // Mostrar el tiempo total de la actividad anterior en la consola y en el HTML
+          console.log(`Tiempo total de ${previousActivity}: ${formatTime(elapsedTime)}`);
+          document.getElementById(`${previousActivity}Time`).innerText = `Tiempo total de ${previousActivity}: ${formatTime(elapsedTime)}`;
+          // Actualizar el tiempo total de todas las actividades
+          totalTimeAllActivities += elapsedTime;
       }
-      let startSeconds = calculateElapsedTime("start");
-      let startTotalElement = document.getElementById("startTotalTime");
-      if (startTotalElement) { // Verificar si el elemento existe antes de establecer su texto interno
-        startTotalElement.innerText = `Tiempo total de todas las actividades: ${formatTime(startSeconds)}`;
-        console.log(`Tiempo total de todas las actividades: ${formatTime(startSeconds)}`);
-      }
-      totalSeconds += startSeconds;
-      let totalTimeElement = document.getElementById("totalTime");
-      if (totalTimeElement) { // Verificar si el elemento existe antes de establecer su texto interno
-        totalTimeElement.innerText = `Tiempo total: ${formatTime(totalSeconds)}`;
-        console.log(`Tiempo total: ${formatTime(totalSeconds)}`);
-      }
-    });
+      // Registrar la hora de inicio de la actividad actual
+      recordTime(activity);
+      
+      // Si la actividad actual es "stop", calcular y mostrar el tiempo total de la última actividad
+
+  }
+
+  // Event listeners para los botones de las diferentes actividades
+  document.getElementById("reunionInternaButton").addEventListener("click", function() {
+      recordAndCalculateTime("reunionInterna");
+  });
+
+  document.getElementById("noTrabajandoButton").addEventListener("click", function() {
+      recordAndCalculateTime("noTrabajando");
+  });
+
+  document.getElementById("reunionClienteButton").addEventListener("click", function() {
+      recordAndCalculateTime("reunionCliente");
+  });
+
+  document.getElementById("codigoButton").addEventListener("click", function() {
+      recordAndCalculateTime("codigo");
+  });
+
+  // Event listener para el botón de parar
+  document.getElementById("stopButton").addEventListener("click", function() {
+      // Registrar la hora de parada
+      let stopTime = new Date().getTime();
+      console.log(`Hora de Stop: ${new Date(stopTime).toLocaleTimeString()}`);
+      // Calcular y mostrar el tiempo total de todas las actividades en la consola y en el HTML
+      let totalTime = Math.floor((stopTime - startTimes["start"]) / 1000); // Convertir el tiempo total a segundos como número entero
+      console.log(`Tiempo total de todas las actividades: ${formatTime(totalTime)}`);
+      document.getElementById("totalTime").innerText = `Tiempo total de todas las actividades: ${formatTime(totalTime)}`;
+
+          let lastActivity = Object.keys(startTimes).reverse()[0];
+          let elapsedTime = calculateElapsedTime(lastActivity, "stop");
+          console.log(`Tiempo total de ${lastActivity}: ${formatTime(elapsedTime)}`);
+          document.getElementById(`${lastActivity}Time`).innerText = `Tiempo total de ${lastActivity}: ${formatTime(elapsedTime)}`;
+
+      
+  });
+
 });
-
-
-  
-  
-  
