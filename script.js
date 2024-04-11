@@ -95,10 +95,10 @@ window.addEventListener("load", function() {
       console.log(`Tiempo total de todas las actividades: ${formatTime(totalTime)}`);
       document.getElementById("totalTime").innerText = `Tiempo total de todas las actividades: ${formatTime(totalTime)}`;
 
-          let lastActivity = Object.keys(startTimes).reverse()[0];
-          let elapsedTime = calculateElapsedTime(lastActivity, "stop");
-          console.log(`Tiempo total de ${lastActivity}: ${formatTime(elapsedTime)}`);
-          document.getElementById(`${lastActivity}Time`).innerText = `Tiempo total de ${lastActivity}: ${formatTime(elapsedTime)}`;
+        let lastActivity = Object.keys(startTimes).reverse()[0];
+        let elapsedTime = calculateElapsedTime(lastActivity, "stop");
+        console.log(`Tiempo total de ${lastActivity}: ${formatTime(elapsedTime)}`);
+        document.getElementById(`${lastActivity}Time`).innerText = `Tiempo total de ${lastActivity}: ${formatTime(elapsedTime)}`;
 
       
   });

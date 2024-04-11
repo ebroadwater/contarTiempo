@@ -8,9 +8,9 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div>
-        <a href="?command=signup">Sign Up</a>
-    </div>
+	<div>
+		<a href="?command=signup">Sign Up</a>
+	</div>
     <div class="countTimeContainer">
         <div>
             <h3>Contar Tiempo</h3>
@@ -37,13 +37,12 @@
     <div>
         <div id="registroHoras"></div>
         <div id="segundos"></div>
-        <div id="startSeconds"></div>
         <div id="reunionInternaTime"></div>
         <div id="noTrabajandoTime"></div>
         <div id="reunionClienteTime"></div>
         <div id="codigoTime"></div>
         <div id="startTotalTime"></div>
-		<div id="startTotalTime"></div>// prueba
+        <div id="totalTime"></div> 
     </div>
 </body>
 </html>
