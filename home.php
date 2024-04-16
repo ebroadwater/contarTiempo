@@ -13,6 +13,11 @@
         <a href="?command=home">Home</a>
         <a href="?command=signup">Sign Up</a>
         <a href="?command=login">Log In</a>
+        <?php 
+            if (isset($_SESSION["name"])){
+                echo "<a style='color:#008bba8f;'>".$_SESSION["name"]."</a>";
+            }
+        ?>
 	</div>
     <div class="countTimeContainer">
         <div>
