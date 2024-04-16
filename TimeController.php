@@ -63,8 +63,8 @@ class TimeController {
                 // Check if user is in database
                 // $res = $this->db->query("select * from users where email = $1;", $_POST["email"]);
 
-				$stmt = $this->pdo->prepare('SELECT * FROM Usuario WHERE email= :em');
-				$stmt->execute(array(
+				$res = $this->pdo->prepare('SELECT * FROM Usuario WHERE email= :em');
+				$res->execute(array(
 					':em' => $_POST['email']
 				));
 				// User was in the database, verify password
