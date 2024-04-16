@@ -8,7 +8,20 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+	<div class="navbar">
+        <a href="?command=home">Home</a>
+        <a href="?command=signup">Sign Up</a>
+        <a href="?command=login">Log In</a>
+	</div>
 	<h1 style="text-align:center;">Sign Up</h1>
+	<div>
+		<?php
+			if (isset($_SESSION["message"]) && !empty($_SESSION["message"])){
+				echo "<div class='alert-message'><p>".$_SESSION["message"]."</p></div>";
+				unset($_SESSION["message"]);
+			}
+		?>
+	</div>
 	<div class="signup-container">
 		<form action="?command=signup" method="post" class="signup-form">
 			<!-- Name input -->
@@ -37,7 +50,6 @@
 			<div>
 				<p>
 					<button type="submit" class="button"name="signup">Sign Up</button>
-					<input type="submit" class="button cancel" name="cancel" value="Cancel">
 				</p>
 				
 				<p class="small-text">Already have an account? <a href="?command=login" class="link-primary">Login</a></p>

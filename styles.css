@@ -89,10 +89,31 @@ h3{
   margin-right:10px;
   border-radius: 6px;
 }
-.cancel {
-  background-color: lightgray;
-  border:solid 0.5px darkgray;
-}
 .small-text{
   font-size: small;
+}
+.alert-message{
+  color:red;
+  text-align: center;
+}
+.navbar{
+  /* border: solid 1px black; */
+  display:inline-flex;
+  gap:30px;
+  width:100%;
+  justify-content: flex-end;
+  height:75px;
+  align-items: center;
+  background-color: rgba(211, 211, 211, 0.533);
+}
+.navbar a{
+  margin-right: 35px;
+  font-size: large;
+  font-family: Arial, sans-serif;
+  text-decoration: none;
+  color:black;
+}
+.navbar h3{
+  margin-right: auto;
+  margin-left: 35px;
 }

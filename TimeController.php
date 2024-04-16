@@ -35,6 +35,9 @@ class TimeController {
 			case "signup":
 				$this->signup();
 				break;
+			case "login":
+				$this->login();
+				break;
 			default:
 				$this->showHome();
 				break;
@@ -44,7 +47,7 @@ class TimeController {
 		// include("/opt/src/Web-PL-Project/home.php");
         include("home.php");
 	}
-	public function showSignUp(){
+	public function showSignUp($message = ""){
 		include("signup.php");
 	}
 	public function signup(){
@@ -93,5 +96,41 @@ class TimeController {
         }
         $_SESSION["message"] = $message;
 		$this->showSignUp($message);
+	}
+	public function showLogin($message = ""){
+		include("login.php");
+	}
+	public function login(){
+		$message = "";
+        unset( $_SESSION["message"] );
+		$salt = 'XyZzy12*_';
+
+		if(isset($_POST["email"]) && !empty($_POST["email"]) && isset($_POST["password"]) && !empty($_POST["password"])) {
+            $check = hash('md5', $salt.$_POST['password']);
+			$stmt = $this->pdo->prepare('SELECT * FROM Usuario WHERE email=:em AND password=:pw');
+			$stmt->execute(array(
+				':em' => $_POST['email'], 
+				':pw' => $check
+			));
+			$row = $stmt->fetch(PDO::FETCH_ASSOC);
+			if ($row !== false){
+				$_SESSION['name'] = $row['name'];
+				$_SESSION['email'] = $row['email'];
+				$_SESSION['user_id'] = $row['user_id'];
+
+				header("Location: ?command=home");
+				return;
+			}
+			else{
+				$message = "Incorrect email or password";
+			}
+        } else {
+            if (isset($_POST["login"]) && !empty($_POST["login"])){
+                $message = "Email and password are required.";
+            }
+        }
+        $_SESSION["message"] = $message;
+
+		$this->showLogin($message);
 	}
 }

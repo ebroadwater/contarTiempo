@@ -8,8 +8,11 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-	<div>
-		<a href="?command=signup">Sign Up</a>
+	<div class="navbar">
+        <h3>contarTiempo</h3>
+        <a href="?command=home">Home</a>
+        <a href="?command=signup">Sign Up</a>
+        <a href="?command=login">Log In</a>
 	</div>
     <div class="countTimeContainer">
         <div>
