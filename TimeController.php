@@ -38,6 +38,9 @@ class TimeController {
 			case "login":
 				$this->login();
 				break;
+			case "logout":
+				$this->logout();
+				break;
 			default:
 				$this->showHome();
 				break;
@@ -133,4 +136,10 @@ class TimeController {
 
 		$this->showLogin($message);
 	}
+	public function logout() {
+        session_destroy();
+        session_start();
+        // header("Location: /wur7ua/hw5/");
+        $this->showHome();
+    }
 }

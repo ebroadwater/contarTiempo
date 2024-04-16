@@ -9,14 +9,17 @@
 </head>
 <body>
     <div class="navbar">
-        <h3>Contar Tiempo</h3>
+		<h3>Contar Tiempo</h3>
         <a href="?command=home">Home</a>
-        <a href="?command=signup">Sign Up</a>
-        <a href="?command=login">Log In</a>
-        <?php 
-            if (isset($_SESSION["name"])){
-                echo "<a style='color:#008bba8f;'>".$_SESSION["name"]."</a>";
-            }
+		<?php 
+			if (isset($_SESSION["email"]) && isset($_SESSION['name'])){
+				echo "<a href='?command=logout'>Log Out</a>";
+				echo "<a style='color:#008bba8f;'>".$_SESSION["name"]."</a>";
+			}
+			else{
+				echo "<a href='?command=signup'>Sign Up</a>";
+				echo "<a href='?command=login'>Log In</a>";
+			}
         ?>
 	</div>
     <h1 style="text-align:center;">Log In</h1>
