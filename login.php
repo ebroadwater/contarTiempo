@@ -9,6 +9,7 @@
 </head>
 <body>
     <div class="navbar">
+        <h3>Contar Tiempo</h3>
         <a href="?command=home">Home</a>
         <a href="?command=signup">Sign Up</a>
         <a href="?command=login">Log In</a>
