@@ -41,11 +41,25 @@ class TimeController {
 			case "logout":
 				$this->logout();
 				break;
+			case "time":
+				$this->time();
+				break;
 			default:
 				$this->showHome();
 				break;
 		}
     }
+	public function time(){
+		//Check that user logged in first before adding to database
+		if (isset($_SESSION['email']) && isset($_SESSION['user_id'])){
+			$_SESSION["message"] = "No error";
+			include("TiempoController.php");
+		}
+		else{
+			header("Location: ?command=home");
+		}
+		
+	}
 	public function showHome(){
 		// include("/opt/src/Web-PL-Project/home.php");
         include("home.php");

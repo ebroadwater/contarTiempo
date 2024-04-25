@@ -10,7 +10,7 @@ body{
   padding: 50px;
 }
 
-.countTimeContainer button {
+.countTimeContainer input {
   padding: 10px 20px;
   border: none;
   cursor: pointer;
@@ -27,7 +27,7 @@ h3{
   text-shadow: 2px 2px 4px #34495ead;
   color:#34495e;
 }
-.countTimeContainer .boton-start button {
+.countTimeContainer .boton-start input {
   background-color: #4CAF50; 
   margin-bottom: 20px;
   width: 10vw; /* Ancho relativo al 10% del ancho de la ventana */
@@ -37,7 +37,7 @@ h3{
   border-radius: 50%; /* Para darle forma de círculo */
 }
 
-.countTimeContainer .boton-stop button {
+.countTimeContainer .boton-stop input {
   background-color: #f44336; /* Rojo */
   margin-top: 20px;
   width: 10vw; /* Ancho relativo al 10% del ancho de la ventana */
@@ -47,19 +47,19 @@ h3{
   border-radius: 50%; /* Para darle forma de círculo */
 }
 
-.countTimeContainer .boton-reunion-interna button {
+.countTimeContainer .boton-reunion-interna input {
   background-color: #008CBA; /* Azul */
 }
 
-.countTimeContainer .boton-no-trabajando button {
+.countTimeContainer .boton-no-trabajando input {
   background-color: #ff9800; /* Naranja */
 }
 
-.countTimeContainer .boton-reunion-cliente button {
+.countTimeContainer .boton-reunion-cliente input {
   background-color: #9b59b6; /* Morado */
 }
 
-.countTimeContainer .boton-codigo button {
+.countTimeContainer .boton-codigo input {
   background-color: #34495e; /* Azul oscuro */
 }
 
