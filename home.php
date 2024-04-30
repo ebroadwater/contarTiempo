@@ -28,39 +28,6 @@
             echo "<div class='alert-message'><p>Please log in to save these values</p></div>";
         }
     ?>
-    <!-- <div class="countTimeContainer">
-        <div>
-            <h3>Contar Tiempo</h3>
-        </div>
-        <div class="btn boton-start">
-            <button id="startButton">Start</button>
-        </div>
-        <div class="btn boton-reunion-interna">
-            <button id="reunionInternaButton">Reunión Interna</button>
-        </div>
-        <div class="btn boton-no-trabajando">
-            <button id="noTrabajandoButton">No Trabajando</button>
-        </div>
-        <div class="btn boton-reunion-cliente">
-            <button id="reunionClienteButton">Reunión Cliente</button>
-        </div>
-        <div class="btn boton-codigo">
-            <button id="codigoButton">Código</button>
-        </div> 
-        <div class="btn boton-stop">
-            <button id="stopButton">Stop</button>
-        </div>
-    </div>
-    <div>
-        <div id="registroHoras"></div>
-        <div id="segundos"></div>
-        <div id="reunionInternaTime"></div>
-        <div id="noTrabajandoTime"></div>
-        <div id="reunionClienteTime"></div>
-        <div id="codigoTime"></div>
-        <div id="startTotalTime"></div>
-        <div id="totalTime"></div> 
-    </div> -->
     <form id="timeForm" method="post" action="?command=time">
         <div class="countTimeContainer">
             <div>
@@ -121,9 +88,6 @@
             <h4>Total Time of Activities</h4>
             <p id="totalTimeAllActivities"></p>
         </div>
-        <!-- <div class="square">
-            <div id="stopStartTime"></div>
-        </div> -->
     </div>
 </body>
 </html>
