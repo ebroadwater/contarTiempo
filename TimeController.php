@@ -44,11 +44,37 @@ class TimeController {
 			case "time":
 				$this->time();
 				break;
+			case "profile":
+				$this->profile();
+				break;
 			default:
 				$this->showHome();
 				break;
 		}
     }
+	public function profile(){
+		$all_times = "";
+		if (isset($_SESSION['user_id'])){
+			$stmt = $this->pdo->prepare('SELECT * FROM Tiempo WHERE user_id=:ui');
+			$stmt->execute(array(
+				':ui' => $_SESSION["user_id"]
+			));
+			if (!empty($stmt)){
+				foreach($stmt as $time_id => $arr){
+					$all_times = $all_times . "<tr><td>".$arr['start_time']."</td><td>".$arr['stop_time']."</td><td>". 
+						$arr['reunion_interna']."</td><td>".$arr['reunion_cliente']."</td><td>".$arr['codigo']."</td><td>".
+						$arr['no_trabajando']."</td></tr>";
+				}
+			}
+			else{
+				$_SESSION["message"] = "Could not find user";
+			}
+			include("profile.php");
+		}
+		else{
+			header("Location: ?command=home");
+		}
+	}
 	public function time(){
 		//Check that user logged in first before adding to database
 		if (isset($_SESSION['email']) && isset($_SESSION['user_id'])){

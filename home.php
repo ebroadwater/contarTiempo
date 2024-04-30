@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tiempo de Trabajo</title>
+    <title>Contar Tiempo</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
@@ -13,7 +13,8 @@
         <a href="?command=home">Home</a>
 		<?php 
 			if (isset($_SESSION["email"]) && isset($_SESSION['name'])){
-				echo "<a href='?command=logout'>Log Out</a>";
+				echo "<a href='?command=profile'>Profile</a>";
+                echo "<a href='?command=logout'>Log Out</a>";
 				echo "<a style='color:#008bba8f;'>".$_SESSION["name"]."</a>";
 			}
 			else{
@@ -85,7 +86,7 @@
             </div>
         </div>
     </form>
-    <div>
+    <!-- <div>
         <div id="startStartTime"></div>
         <div id="reunionInternaStartTime"></div>
         <div id="noTrabajandoStartTime"></div>
@@ -93,6 +94,36 @@
         <div id="codigoStartTime"></div>
         <div id="stopStartTime"></div>
         <div id="totalTimeAllActivities"></div>
+    </div> -->
+    <div class="finalTotal">
+        <div class="square">
+            <h4>Start Time and Stop Time</h4>
+            <p id="startStartTime"></p>
+            <p id="stopStartTime"></p>
+        </div>
+        <div class="square">
+            <h4>Reunion Interna</h4>
+            <p id="reunionInternaStartTime"></p>
+        </div>
+        <div class="square">
+            <h4>No Trabajando</h4>
+            <p id="noTrabajandoStartTime"></p>
+        </div>
+        <div class="square">
+            <h4>Reunion Cliente</h4>
+            <p id="reunionClienteStartTime"></p>
+        </div>
+        <div class="square">
+            <h4>Código</h4>
+            <p id="codigoStartTime"></p>
+        </div>
+        <div class="square">
+            <h4>Total Time of Activities</h4>
+            <p id="totalTimeAllActivities"></p>
+        </div>
+        <!-- <div class="square">
+            <div id="stopStartTime"></div>
+        </div> -->
     </div>
 </body>
 </html>

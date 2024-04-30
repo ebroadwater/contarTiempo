@@ -1,5 +1,6 @@
 body{
   margin: 0;
+  font-family: Arial, sans-serif;
 }
 .countTimeContainer {
   font-family: Arial, sans-serif;
@@ -116,4 +117,39 @@ h3{
 .navbar h3{
   margin-right: auto;
   margin-left: 35px;
+}
+table{
+  border-collapse: collapse;
+  width: 100%;
+}
+td, th {
+  /* border: 1px solid #dddddd; */
+  border: 1px solid rgb(201, 200, 200);
+  text-align: center;
+  padding: 8px;
+}
+th{
+  /* background-color: #dddddd;
+  border: solid 1px #c8c5c5; */
+  background-color:rgba(173, 216, 230, 0.902);
+}
+h1{
+  text-align: center;
+}
+.finalTotal{
+  display:flex;
+  /* border: 1px solid black; */
+  justify-content: space-evenly;
+  height:250px;
+  margin-bottom: 20px;
+  align-items: center;
+  background-color: rgb(246, 249, 253);
+}
+.square{
+  /* border:solid 1px red; */
+  border-radius: 8px;
+  height:150px;
+  width:200px;
+  text-align: center;
+  background-color: white;
 }

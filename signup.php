@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Tiempo de Trabajo Sign Up</title>
+	<title>Contar Tiempo Sign Up</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
@@ -13,6 +13,7 @@
         <a href="?command=home">Home</a>
 		<?php 
 			if (isset($_SESSION["email"]) && isset($_SESSION['name'])){
+				echo "<a href='?command=profile'>Profile</a>";
 				echo "<a href='?command=logout'>Log Out</a>";
 				echo "<a style='color:#008bba8f;'>".$_SESSION["name"]."</a>";
 			}
