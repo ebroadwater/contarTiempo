@@ -65,27 +65,33 @@
     <div class="finalTotal">
         <div class="square">
             <h4>Start Time and Stop Time</h4>
+            <img src="images/timer.png" alt="start/stop time icon" width="60" height="60" class="icon-img">
             <p id="startStartTime"></p>
             <p id="stopStartTime"></p>
         </div>
         <div class="square">
             <h4>Reunion Interna</h4>
+            <img src="images/reunion_interna.png" alt="codigo icon" width="60" height="60" class="icon-img">
             <p id="reunionInternaStartTime"></p>
         </div>
         <div class="square">
             <h4>No Trabajando</h4>
+            <img src="images/break.png" alt="no trabajando icon" width="60" height="60" class="icon-img">
             <p id="noTrabajandoStartTime"></p>
         </div>
         <div class="square">
             <h4>Reunion Cliente</h4>
+            <img src="images/reunion_cliente.png" alt="reunion cliente icon" width="60" height="60" class="icon-img">
             <p id="reunionClienteStartTime"></p>
         </div>
         <div class="square">
             <h4>Código</h4>
+            <img src="images/coding.png" alt="codigo icon" width="60" height="60" class="icon-img">
             <p id="codigoStartTime"></p>
         </div>
         <div class="square">
             <h4>Total Time of Activities</h4>
+            <img src="images/hourglass.png" alt="total time icon" width="50" height="60" class="icon-img" id="total-time-img">
             <p id="totalTimeAllActivities"></p>
         </div>
     </div>
