@@ -150,13 +150,12 @@ class TimeController {
 
 		if(isset($_POST["email"]) && !empty($_POST["email"]) && isset($_POST["password"]) && !empty($_POST["password"])) {
             $check = hash('md5', $salt.$_POST['password']);
-			$stmt = $this->pdo->prepare('SELECT * FROM Usuario WHERE email=:em AND password=:pw');
+			$stmt = $this->pdo->prepare('SELECT * FROM Usuario WHERE email=:em');
 			$stmt->execute(array(
-				':em' => $_POST['email'], 
-				':pw' => $check
+				':em' => $_POST['email']
 			));
 			$row = $stmt->fetch(PDO::FETCH_ASSOC);
-			if ($row !== false){
+			if ($row !== false || !empty($row)){
 				$_SESSION['name'] = $row['name'];
 				$_SESSION['email'] = $row['email'];
 				$_SESSION['user_id'] = $row['user_id'];
