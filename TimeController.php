@@ -103,12 +103,12 @@ class TimeController {
                 // Check if user is in database
                 // $res = $this->db->query("select * from users where email = $1;", $_POST["email"]);
 
-				$res = $this->pdo->prepare('SELECT * FROM Usuario WHERE email= :em');
+				$res = $this->pdo->prepare('SELECT * FROM Usuario WHERE email=:em');
 				$res->execute(array(
-					':em' => $_POST['email']
+					':em' => $_POST["email"]
 				));
-				// User was in the database, verify password
-                if (!empty($res)){
+				// User was in the database, direct to log in
+				if ($res->rowCount() > 0){
                     $message = "User with email ".$_POST["email"]." already exists. Please log in.";
                 } else{
                     // User was not there, so insert them
@@ -150,12 +150,13 @@ class TimeController {
 
 		if(isset($_POST["email"]) && !empty($_POST["email"]) && isset($_POST["password"]) && !empty($_POST["password"])) {
             $check = hash('md5', $salt.$_POST['password']);
-			$stmt = $this->pdo->prepare('SELECT * FROM Usuario WHERE email=:em');
+			$stmt = $this->pdo->prepare('SELECT * FROM Usuario WHERE email=:em AND password=:pw');
 			$stmt->execute(array(
-				':em' => $_POST['email']
+				':em' => $_POST['email'], 
+				':pw' => $check
 			));
 			$row = $stmt->fetch(PDO::FETCH_ASSOC);
-			if ($row !== false || !empty($row)){
+			if ($row !== false){
 				$_SESSION['name'] = $row['name'];
 				$_SESSION['email'] = $row['email'];
 				$_SESSION['user_id'] = $row['user_id'];
