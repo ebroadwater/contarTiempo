@@ -20,7 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Comprobar si se recibieron los datos de las actividades
     if (!empty($requestData)) {
         // Establecer la conexión a la base de datos
-        $pdo = new PDO('mysql:host=localhost;port=8889;dbname=contarTiempo', 'root', 'root');
+        // $pdo = new PDO('mysql:host=localhost;port=8889;dbname=contarTiempo', 'root', 'root');
+        $pdo = new PDO('mysql:host=localhost;port=3306;dbname=contartiempo', 'root', '');
 
         $time_id; 
         // Iterar sobre los datos recibidos y procesar cada actividad

@@ -12,7 +12,8 @@ class TimeController {
 
 		// $this->db = new Database();
         
-		$this->pdo = new PDO('mysql:host=localhost;port=8889;dbname=contarTiempo', 'root', 'root');
+		// $this->pdo = new PDO('mysql:host=localhost;port=8889;dbname=contarTiempo', 'root', 'root');
+		$this->pdo = new PDO('mysql:host=localhost;port=3306;dbname=contartiempo', 'root', '');
 		$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $this->input = $input;
