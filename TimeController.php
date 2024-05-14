@@ -3,7 +3,7 @@
 class TimeController {
 	private $input = [];
 
-	// private $pdo;
+	private $pdo;
 	/**
      * Constructor
      */
